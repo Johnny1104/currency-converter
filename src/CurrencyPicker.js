@@ -7,10 +7,11 @@ function CurrencyPicker(props) {
         onChangeCurrency,
         amount,
         onChangeAmount,
+        title,
     } = props;
     return (
         <div className='currency-picker'>
-            <label htmlFor='fromCurrency' className='currency-picker__label'>From</label>
+            <label htmlFor='fromCurrency' className='currency-picker__label'>{ title }</label>
             <div className='input-wrapper'>
                 <input type='number' name='fromCurrency' className='currency-picker__input' min='0' placeholder="0" value={ amount } onChange={ onChangeAmount }></input>
                 <div className='currency-picker__select'>

@@ -55,6 +55,18 @@ function MainFrame() {
         setAmountInFromCurrency(false);
     };
 
+    function swapCurrencies() {
+        let temp = fromCurrency
+
+        if (!amountInFromCurrency) {
+            setAmount(fromAmount)
+        } else {
+            setAmount(toAmount)
+        }
+        setFromCurrency(toCurrency)
+        setToCurrency(temp)
+    };
+
 
     return (
         <div className='main-frame'>
@@ -66,22 +78,40 @@ function MainFrame() {
                         onChangeCurrency={ e => setFromCurrency(e.target.value) }
                         onChangeAmount={ handleFromAmountChange }
                         amount={ fromAmount }
+                        title='From'
                     />
-                    <ReverseButton />
+                    <ReverseButton
+                        reverseFn={ swapCurrencies }
+                    />
                     <CurrencyPicker
                         currencyOptions={ currencyOptions }
                         selectedCurrency={ toCurrency }
                         onChangeCurrency={ e => setToCurrency(e.target.value) }
                         onChangeAmount={ handleToAmountChange }
                         amount={ toAmount }
+                        title='To'
                     />
                 </div>
                 <div className='main-frame-row'>
-                    {/* Conversion result */ }
-                    <ConversionResult />
+                    <ConversionResult
+                        fromCurrency={ fromCurrency }
+                        fromAmount={ Number(fromAmount).toFixed(2) }
+                        toCurrency={ toCurrency }
+                        toAmount={ Number(toAmount).toFixed(2) }
+                    />
                     <div className='currency-rates'>
-                        <CurrencyRates />
-                        <CurrencyRates />
+                        <CurrencyRates
+                            rate={ Number(exchangeRate).toFixed(6) }
+                            amount={ 1 }
+                            fromCurrency={ fromCurrency }
+                            toCurrency={ toCurrency }
+                        />
+                        <CurrencyRates
+                            rate={ Number(1 / exchangeRate).toFixed(6) }
+                            amount={ 1 }
+                            fromCurrency={ toCurrency }
+                            toCurrency={ fromCurrency }
+                        />
                     </div>
                 </div>
                 <Disclaimer />

@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function CurrencyRates() {
+export default function CurrencyRates(props) {
+    const {
+        rate,
+        amount,
+        fromCurrency,
+        toCurrency,
+    } = props;
     return (
         <p className='currency-rates__item'>
-            1 USD = 0.940450 EUR
+            { amount } { fromCurrency } = { rate } { toCurrency }
         </p>
     )
 }
