@@ -182,10 +182,6 @@ p {
   cursor: pointer;
 }
 
-.conversion-result__final_grey-text {
-  color: hsla(var(--main-grey-hsl), 0.8);
-}
-
 .conversion-result__disclaimer {
   color: hsla(var(--main-grey-hsl), 0.8);
   font-size: 0.75rem;
