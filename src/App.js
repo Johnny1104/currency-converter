@@ -18,7 +18,7 @@ function App() {
 
         <div className='main-frame'>
           <div className='main-content'>
-            <div className='input-row'>
+            <div className='main-frame-row input-row'>
 
               {/* picker 1  */ }
               <div className='currency-picker'>
@@ -61,6 +61,15 @@ function App() {
                 </div>
               </div>
               {/* picker end */ }
+            </div>
+            <div className='main-frame-row'>
+              {/* Conversion result */ }
+              <div className='conversion-result'>
+                <p className='conversion-result__base conversion-result__item'>21.00 US Dollars =</p>
+                <p className='conversion-result__final conversion-result__item'>22.12<span className='conversion-result__final_grey-text'>3456</span> Euros</p>
+                <p className='conversion-result__disclaimer'>Click on the number to copy</p>
+              </div>
+
               <div className='currency-rates'>
                 <p className='currency-rates__item'>
                   1 USD = 0.940450 EUR
@@ -69,13 +78,6 @@ function App() {
                   1 USD = 0.940450 EUR
                 </p>
               </div>
-            </div>
-
-            {/* Conversion result */ }
-            <div className='conversion-result'>
-              <p className='conversion-result__base conversion-result__item'>21.00 US Dollars =</p>
-              <p className='conversion-result__final conversion-result__item'>22.12<span className='conversion-result__final_grey-text'>3456</span> Euros</p>
-              <p className='conversion-result__disclaimer'>Click on the number to copy</p>
             </div>
 
             {/* Disclaimer */ }
