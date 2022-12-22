@@ -9,11 +9,11 @@ function App() {
       <div className='app-content'>
         <div className='header-text-block'>
           <h1 className='header-text'>
-            21 USD to EUR - Convert US Dollars to Euros
-          </h1>
-          <h1 className='header-text'>
             Currency Converter
           </h1>
+          <h2 className='header-text sub-header-text'>
+            1 USD = 40.00 UAH | 1 EUR = 40.00 UAH
+          </h2>
         </div>
 
         <MainFrame />

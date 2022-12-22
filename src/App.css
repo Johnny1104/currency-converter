@@ -21,6 +21,7 @@ select {
 }
 
 h1,
+h2,
 p {
   margin: 0;
   padding: 0;
@@ -52,10 +53,16 @@ p {
 }
 
 .header-text {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 1.5;
   color: var(--white);
+}
+
+.sub-header-text {
+  font-size: 1.5rem;
+  margin-top: 0.5em;
+  font-weight: 700;
 }
 
 .main-frame {
