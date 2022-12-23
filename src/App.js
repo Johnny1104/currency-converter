@@ -1,8 +1,26 @@
 import React from 'react';
 import './App.css';
 import MainFrame from './MainFrame';
+import { useState, useEffect } from 'react';
+import HeaderRates from './HeaderRates';
 
 function App() {
+  const RATES_URL = 'https://api.exchangerate.host/latest';
+  const [ rateEur, setRateEur ] = useState();
+  const [ rateUsd, setRateUsd ] = useState();
+
+  useEffect(() => {
+    fetch(`${RATES_URL}?base=EUR`)
+      .then(res => res.json())
+      .then(data => setRateEur(data.rates[ 'UAH' ]))
+  }, []);
+
+  useEffect(() => {
+    fetch(`${RATES_URL}?base=USD`)
+      .then(res => res.json())
+      .then(data => setRateUsd(data.rates[ 'UAH' ]))
+  }, []);
+
   return (
     <React.Fragment>
       <header className="app-header" />
@@ -11,12 +29,15 @@ function App() {
           <h1 className='header-text'>
             Currency Converter
           </h1>
-          <h2 className='header-text sub-header-text'>
-            1 USD = 40.00 UAH | 1 EUR = 40.00 UAH
-          </h2>
+          <HeaderRates
+            rateEur={ rateEur.toFixed(2) }
+            rateUsd={ rateUsd.toFixed(2) }
+          />
         </div>
 
-        <MainFrame />
+        <MainFrame
+          url={ RATES_URL }
+        />
 
       </div>
     </React.Fragment >

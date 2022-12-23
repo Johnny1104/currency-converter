@@ -3,11 +3,12 @@ import ConversionResult from './ConversionResult.js';
 import CurrencyPicker from './CurrencyPicker.js';
 import CurrencyRates from './CurrencyRates.js';
 import Disclaimer from './Disclaimer.js';
-import ReverseButton from './ReverseButton';
+import ReverseButton from './ReverseButton.js';
 
-function MainFrame() {
-
-    const RATES_URL = 'https://api.exchangerate.host/latest';
+function MainFrame(props) {
+    const {
+        url
+    } = props;
 
     const [ currencyOptions, setCurrencyOptions ] = useState([]);
     const [ fromCurrency, setFromCurrency ] = useState();
@@ -26,7 +27,7 @@ function MainFrame() {
     }
 
     useEffect(() => {
-        fetch(RATES_URL)
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 const toCurrencyDefalut = 'UAH';
@@ -39,7 +40,7 @@ function MainFrame() {
 
     useEffect(() => {
         if (fromCurrency != null && toCurrency != null) {
-            fetch(`${RATES_URL}?base=${fromCurrency}&symbols=${toCurrency}`)
+            fetch(`${url}?base=${fromCurrency}&symbols=${toCurrency}`)
                 .then(res => res.json())
                 .then(data => setExchangeRate(data.rates[ toCurrency ]))
         }
