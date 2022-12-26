@@ -3,6 +3,7 @@ import './App.css';
 import MainFrame from './MainFrame';
 import { useState, useEffect } from 'react';
 import HeaderRates from './HeaderRates';
+import { fetchRates, validateNumber } from './utils/utils'
 
 function App() {
   const RATES_URL = 'https://api.exchangerate.host/latest';
@@ -10,16 +11,9 @@ function App() {
   const [ rateUsd, setRateUsd ] = useState();
 
   useEffect(() => {
-    fetch(`${RATES_URL}?base=EUR`)
-      .then(res => res.json())
-      .then(data => setRateEur(data.rates[ 'UAH' ]))
-  }, []);
-
-  useEffect(() => {
-    fetch(`${RATES_URL}?base=USD`)
-      .then(res => res.json())
-      .then(data => setRateUsd(data.rates[ 'UAH' ]))
-  }, []);
+    fetchRates(RATES_URL, 'EUR', setRateEur)
+    fetchRates(RATES_URL, 'USD', setRateUsd)
+  }, [])
 
   return (
     <React.Fragment>
@@ -30,8 +24,8 @@ function App() {
             Currency Converter
           </h1>
           <HeaderRates
-            rateEur={ rateEur.toFixed(2) }
-            rateUsd={ rateUsd.toFixed(2) }
+            rateEur={ validateNumber(rateEur).toFixed(2) }
+            rateUsd={ validateNumber(rateUsd).toFixed(2) }
           />
         </div>
 

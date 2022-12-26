@@ -4,6 +4,7 @@ import CurrencyPicker from './CurrencyPicker.js';
 import CurrencyRates from './CurrencyRates.js';
 import Disclaimer from './Disclaimer.js';
 import ReverseButton from './ReverseButton.js';
+import { validateNumber } from './utils/utils.js';
 
 function MainFrame(props) {
     const {
@@ -78,7 +79,7 @@ function MainFrame(props) {
                         selectedCurrency={ fromCurrency }
                         onChangeCurrency={ e => setFromCurrency(e.target.value) }
                         onChangeAmount={ handleFromAmountChange }
-                        amount={ fromAmount }
+                        amount={ validateNumber(fromAmount) }
                         title='From'
                     />
                     <ReverseButton
@@ -89,7 +90,7 @@ function MainFrame(props) {
                         selectedCurrency={ toCurrency }
                         onChangeCurrency={ e => setToCurrency(e.target.value) }
                         onChangeAmount={ handleToAmountChange }
-                        amount={ toAmount }
+                        amount={ validateNumber(toAmount) }
                         title='To'
                     />
                 </div>

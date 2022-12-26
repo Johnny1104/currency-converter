@@ -16,8 +16,8 @@ function CurrencyPicker(props) {
                 <input type='number' name='fromCurrency' className='currency-picker__input' min='0' placeholder="0" value={ amount } onChange={ onChangeAmount }></input>
                 <div className='currency-picker__select'>
                     <select value={ selectedCurrency } onChange={ onChangeCurrency }>
-                        { currencyOptions.map(option => (
-                            <option value={ option }>{ option }</option>
+                        { currencyOptions.map((option, i) => (
+                            <option value={ option } key={ i }>{ option }</option>
                         )) };
                     </select>
                 </div>
